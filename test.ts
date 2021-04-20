@@ -9,8 +9,13 @@ console.log("json received from rust:");
 console.log("   ");
 console.log(testJson);
 console.log("   ");
+interface Address {
+  number:   number;
+  street:   string;
+  city:     string;
+}
 
-const jsonAddress = { "city" : "Vienna", "number" : 23, "street" : "Hietzing"};
+const jsonAddress: Address = { "city" : "Vienna", "number" : 1, "street" : "Maxingstraße"};
 
 const strJson = JSON.stringify(jsonAddress);
 
