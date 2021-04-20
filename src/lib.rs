@@ -1,8 +1,8 @@
 use wasm_bindgen::prelude::wasm_bindgen;
 
-#[cfg(feature = "wee_alloc")]
-#[global_allocator]
-static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
+// #[cfg(feature = "wee_alloc")]
+// #[global_allocator]
+// static ALLOC: wee_alloc::WeeAlloc = wee_alloc::WeeAlloc::INIT;
 
 extern crate serde;
 
@@ -11,8 +11,6 @@ extern crate serde_json;
 
 #[macro_use]
 extern crate serde_derive;
-
-extern crate wasm_bindgen;
 
 #[derive(Serialize)]
 struct Address {
