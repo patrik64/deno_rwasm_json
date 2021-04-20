@@ -15,7 +15,7 @@ interface Address {
   city:     string;
 }
 
-const jsonAddress: Address = { "city" : "Vienna", "number" : 1, "street" : "Maxingstraße"};
+const jsonAddress: Address = { "city" : "Vienna", "number" : 1, "street" : "Maxingstraße" };
 
 const strJson = JSON.stringify(jsonAddress);
 
