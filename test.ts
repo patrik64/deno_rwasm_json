@@ -9,6 +9,7 @@ console.log("json received from rust:");
 console.log("   ");
 console.log(testJson);
 console.log("   ");
+
 interface Address {
   number:   number;
   street:   string;
@@ -16,8 +17,5 @@ interface Address {
 }
 
 const jsonAddress: Address = { "city" : "Vienna", "number" : 1, "street" : "Maxingstraße" };
-
 const strJson = JSON.stringify(jsonAddress);
-
 set_json(strJson);
-
