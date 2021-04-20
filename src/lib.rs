@@ -8,7 +8,13 @@ extern crate serde_json;
 #[macro_use]
 extern crate serde_derive;
 
-#[derive(Serialize)]
+#[wasm_bindgen]
+extern "C" {
+    #[wasm_bindgen(js_namespace = console)]
+    fn log(s: &str);
+}
+
+#[derive(Serialize, Deserialize)]
 struct Address {
     number: Option<u32>,
     street: String,
@@ -37,4 +43,12 @@ pub fn get_json() -> String {
         ],
     });
     serde_json::to_string(&data).unwrap()
+}
+
+#[wasm_bindgen]
+pub fn set_json(json_string_input: &str) {
+    let address: Address = serde_json::from_str(&json_string_input).unwrap();
+    let str = serde_json::to_string(&address).unwrap();
+    log("json received from deno and printed from within rust: ");
+    log(&str);
 }
