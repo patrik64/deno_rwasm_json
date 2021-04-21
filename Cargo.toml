@@ -1,8 +1,10 @@
 [package]
 name = "deno_rwasm_json"
 description = "WASM bindings to json"
+license = "MIT"
 version = "0.1.0"
 edition = "2018"
+repository = "https://github.com/Patrik64/deno_rwasm_json"
 
 [lib]
 crate-type = ["cdylib"]
