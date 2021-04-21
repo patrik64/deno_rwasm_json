@@ -1,7 +1,7 @@
 # deno_rwasm_json
 simple deno rust wasm example using json  
 
-before running make sure you have rust and wasm-pack installed:  
+before running make sure you have deno, rust and wasm-pack installed:  
 https://deno.land/manual/getting_started/installation  
 https://www.rust-lang.org/tools/install  
 https://rustwasm.github.io/wasm-pack/installer/  
