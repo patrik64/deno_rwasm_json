@@ -9,6 +9,6 @@ and then:
 
 ```deno run test.ts```
 
-build script based on:
-https://github.com/littledivy/deno-ciphers
+build script based on:  
+https://github.com/littledivy/deno-ciphers  
 Thank you Divy Srivastava!!!
