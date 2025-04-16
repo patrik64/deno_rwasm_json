@@ -1,5 +1,5 @@
-import { encode } from "https://deno.land/std@0.54.0/encoding/base64.ts";
-import { compress } from "https://deno.land/x/lz4@v0.1.0/mod.ts";
+import { encodeBase64 } from "jsr:@std/encoding/base64";
+import { compress } from "https://deno.land/x/lz4/mod.ts";
 import Terser from "https://cdn.pika.dev/terser@^4.7.0";
 
 const encoder = new TextEncoder();
@@ -46,21 +46,27 @@ if (!(await Deno.stat("Cargo.toml")).isFile) {
   err(`the build script should be executed in the "wasabi" root`);
 }
 
-await run(
-  "building using wasm-pack",
-  ["wasm-pack", "build", "--target", "web", "--release"],
-);
+await run("building using wasm-pack", [
+  "wasm-pack",
+  "build",
+  "--target",
+  "web",
+  "--release",
+]);
 
 const wasm = await Deno.readFile("pkg/deno_rwasm_json_bg.wasm");
 const compressed = compress(wasm);
 log(
-  `compressed wasm using lz4, size reduction: ${wasm.length -
-    compressed.length} bytes`,
+  `compressed wasm using lz4, size reduction: ${
+    wasm.length - compressed.length
+  } bytes`,
 );
-const encoded = encode(compressed);
+
+const encoded = encodeBase64(compressed);
 log(
-  `encoded wasm using base64, size increase: ${encoded.length -
-    compressed.length} bytes`,
+  `encoded wasm using base64, size increase: ${
+    encoded.length - compressed.length
+  } bytes`,
 );
 
 log("inlining wasm in js");
@@ -81,8 +87,8 @@ if (output.error) {
   err(`encountered error when minifying: ${output.error}`);
 }
 
-const reduction = new Blob([(`${source}\n${init}`)]).size -
-  new Blob([output.code]).size;
+const reduction =
+  new Blob([`${source}\n${init}`]).size - new Blob([output.code]).size;
 log(`minified js, size reduction: ${reduction} bytes`);
 
 log(`writing output to file ("wasm.js")`);
